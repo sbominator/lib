@@ -1,28 +1,27 @@
 <?php
 
-namespace SBOMinator {
-  class Dependency
-  {
+declare(strict_types=1);
 
-    public function __construct($version, $dependencies = [])
+namespace SBOMinator;
+
+class Dependency
+{
+    private string $version;
+    private array $dependencies;
+
+    public function __construct(string $version, array $dependencies = [])
     {
-      $this->version = $version;
-      $this->dependencies = $dependencies;
+        $this->version = $version;
+        $this->dependencies = $dependencies;
     }
 
-    public function get_version(): string
+    public function getVersion(): string
     {
-      return $this->version;
+        return $this->version;
     }
 
-    private $version;
-
-    public function get_dependencies():array
+    public function getDependencies(): array
     {
-      return $this->dependencies;
+        return $this->dependencies;
     }
-    private $dependencies;
-  }
-
 }
-?>
