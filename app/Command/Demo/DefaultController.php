@@ -11,5 +11,7 @@ class DefaultController extends CommandController
     public function handle(): void
     {
         $this->info('Run ./minicli help for usage help.');
+
+
     }
 }

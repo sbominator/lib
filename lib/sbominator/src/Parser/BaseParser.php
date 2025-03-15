@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\sbominator\src\Parser;
+namespace SBOMinator\Parser;
 
 class BaseParser
 {

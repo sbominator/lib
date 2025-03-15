@@ -4,15 +4,23 @@ declare(strict_types=1);
 
 namespace App\Command\Demo;
 
+use SBOMinator\Parser\ComposerParser;
 use Minicli\Command\CommandController;
 
 class TestController extends CommandController
 {
     public function handle(): void
     {
-        $name = $this->hasParam('user') ? $this->getParam('user') : 'World';
-        $this->display(sprintf("Hello, %s!", $name));
+        $this->info('This is a test controller.');
+        $composerParser = new ComposerParser();
+        $composerLock = file_get_contents('composer.json');
 
-        print_r($this->getParams());
+        try {
+            $composerParser->loadFromString($composerLock);
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            return;
+        }
+
     }
 }

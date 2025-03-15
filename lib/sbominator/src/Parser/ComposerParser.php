@@ -1,8 +1,8 @@
 <?php
 
-namespace lib\sbominator\src\Parser;
+namespace SBOMinator\Parser;
 
-use lib\sbominator\src\Dependency;
+use SBOMinator\Dependency;
 
 class ComposerParser extends BaseParser
 {
