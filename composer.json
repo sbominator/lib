@@ -1,16 +1,17 @@
 {
-  "name": "minicli/application",
-  "description": "Minicli Application Template",
+  "name": "sbominator/cli",
+  "description": "SBOMinator CLI",
   "license": "MIT",
-  "homepage": "https://github.com/minicli/application",
+  "homepage": "https://github.com/sbominator",
   "keywords": ["cli","command-line", "template"],
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "app/",
+      "SBOMiniator\\": "lib/sbominator"
     }
   },
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.4",
     "minicli/minicli": "^4.2",
     "minicli/command-help": "^1.0"
   },
