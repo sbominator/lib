@@ -1,7 +1,7 @@
 name: sbominator-package
 type: generic
 docroot: ""
-php_version: "8.3"
+php_version: "8.4"
 webserver_type: generic
 xdebug_enabled: false
 additional_hostnames: []
