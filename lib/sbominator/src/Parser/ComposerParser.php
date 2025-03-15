@@ -1,68 +1,85 @@
 <?php
 
-namespace SBOMinator\Parser;
+declare(strict_types=1);
 
-use SBOMinator\Dependency;
+namespace SBOMinator\Parser;
 
 class ComposerParser extends BaseParser
 {
-    private string $contentHash;
-    private array $packages;
-    public function __construct() {}
-
-    public function loadFromFile(string $filePath): self
+    /**
+     * Expects a composer.lock JSON structure with keys "content-hash", "packages" and optionally "packages-dev".
+     * Converts the packages into an associative array keyed by package name.
+     */
+    protected function parseJson(array $json): void
     {
-        $json = json_decode(file_get_contents('composer.json'), true);
-
-        if(!$json || empty($json) || empty($json['content-hash']) || empty($json['packages'])) {
-            throw new \Exception('Invalid composer.json file');
+        if (empty($json) || empty($json['content-hash']) || !isset($json['packages'])) {
+            throw new \Exception('Invalid composer.lock file');
         }
 
-        $this->contentHash = $json['content-hash'];
-        $this->packages = $json['packages'];
-
-        return $this;
-    }
-
-    public function loadFromString(string $fileContent): self
-    {
-        $json = json_decode($fileContent, true);
-
-        return $this;
-    }
-
-    private function parseJson($json): void
-    {
-        if(!$json || empty($json) || empty($json['content-hash']) || empty($json['packages'])) {
-            throw new \Exception('Invalid composer.json file');
+        $allPackages = $json['packages'];
+        if (!empty($json['packages-dev'])) {
+            $allPackages = array_merge($allPackages, $json['packages-dev']);
         }
 
-        $this->contentHash = $json['content-hash'];
-        $this->packages = $json['packages'];
-
-        if(!empty($json['packages-dev'])) {
-            $this->packages = array_merge($this->packages, $json['packages-dev']);
+        // Convert to associative array keyed by package name.
+        $this->packages = [];
+        foreach ($allPackages as $pkg) {
+            $this->packages[$pkg['name']] = $pkg;
         }
-
     }
 
-    public function getContentHash(): string
+    protected function findPackageByIdentifier(string $identifier): ?array
     {
-        return $this->contentHash;
+        return $this->packages[$identifier] ?? null;
     }
 
-    public function getPackages(): array
+    protected function getVersion(array $package): string
     {
-        return $this->packages;
+        return $package['version'];
     }
 
-    public function parseDependencies($package) {
-        $dependencies = [];
-        foreach($this->packages as $package) {
-            $dependency['name'] = $package['name'];
-            $dependency['version'] = $package['version'];
-            $dependency['dependencies'] = [];
+    protected function getDependencies(array $package): array
+    {
+        $deps = [];
+        foreach (['require', 'require-dev'] as $key) {
+            if (!empty($package[$key])) {
+                foreach ($package[$key] as $depName => $version) {
+                    $deps[] = $depName;
+                }
+            }
         }
-        return $dependencies;
+        return $deps;
+    }
+
+    protected function resolveDependencyIdentifier(string $parentIdentifier, string $depName): string
+    {
+        // In composer.lock, the identifier is simply the package name.
+        return $depName;
+    }
+
+    protected function getTopLevelIdentifiers(): array
+    {
+        // Identify packages that are not referenced as dependencies in any package.
+        $referenced = [];
+        foreach ($this->packages as $pkg) {
+            foreach (['require', 'require-dev'] as $key) {
+                if (!empty($pkg[$key])) {
+                    foreach ($pkg[$key] as $depName => $version) {
+                        $referenced[$depName] = true;
+                    }
+                }
+            }
+        }
+        $top = [];
+        foreach ($this->packages as $name => $pkg) {
+            if (!isset($referenced[$name])) {
+                $top[] = $name;
+            }
+        }
+        // Fallback: if none qualifies, return all package names.
+        if (empty($top)) {
+            $top = array_keys($this->packages);
+        }
+        return $top;
     }
 }
