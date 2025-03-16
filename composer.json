@@ -1,9 +1,13 @@
 {
   "name": "sbominator/package",
+  "version": "0.0.1",
   "description": "SBOMinator Library",
   "license": "MIT",
   "homepage": "https://github.com/sbominator/package",
-  "keywords": ["security", "sbom"],
+  "keywords": [
+    "security",
+    "sbom"
+  ],
   "autoload": {
     "psr-4": {
       "SBOMinator\\": "src/"
