@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SBOMinator\Lib\Parser;
 
-use SBOMinator\Dependency;
-use SBOMinator\Enum\FileType;
+use SBOMinator\Lib\Enum\FileType;
 
 class CycloneDXParser extends BaseParser
 {

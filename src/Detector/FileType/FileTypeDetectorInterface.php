@@ -1,8 +1,8 @@
 <?php
 
-namespace SBOMinator\Detector\FileType;
+namespace SBOMinator\Lib\Detector\FileType;
 
-use SBOMinator\Enum\FileType;
+use SBOMinator\Lib\Enum\FileType;
 
 /**
  * Interface for file type detectors.
