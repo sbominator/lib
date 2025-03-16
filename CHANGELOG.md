@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.0](https://github.com/sbominator/package/compare/v0.1.0...v0.1.0) (2025-03-16)
+
+
+### Features
+
+* initial version ([41b5f28](https://github.com/sbominator/package/commit/41b5f287bb4c69de82e6e720ae4c4cbc4708abb0))
+* initial version ([af4abcd](https://github.com/sbominator/package/commit/af4abcd57dfb0653f8cbeda2dad87d909eb205ab))
+
 ## 0.1.0 (2025-03-16)
 
 
