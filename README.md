@@ -35,6 +35,9 @@ After checking out the project, you can run `ddev start` to start the project. U
 use SBOMinator\Parser\ComposerParser;
 
 $parser = new ComposerParser();
+
+// You can omit dev packages if you want by calling withoutDevPackages() on the parser.
+$parser = new ComposerParser()->withoutDevPackages();
 ```
 
 #### Parse a file that the parser supports
@@ -55,9 +58,6 @@ $parser->loadFromString(file_get_contents('composer.lock'));
 
 ```php
 $dependencyTree = $parser->parseDependencies();
-
-// You can omit dev packages if you want by calling withoutDevPackages() on the parser.
-$dependencyTree = $parser->withoutDevPackages()->parseDependencies();
 ```
 
 ## Contributing
