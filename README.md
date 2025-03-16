@@ -28,7 +28,7 @@ For easier development across machines, you can use ddev to run the project loca
 After checking out the project, you can run `ddev start` to start the project. Use `ddev ssh` to get a shell in the running container. You can then run `composer install` in the shell to install the dependencies.
 
 ### Usage
-##### Using the scanner
+### Using the scanner
 #### Load up the scanner of your choice.
 
 ```php
@@ -49,7 +49,7 @@ Use the scanForDependencies() method to scan a directory for files that the scan
 $dependencies = $fileScanner->scanForDependencies(getcwd());
 ```
 
-##### Using the parser
+### Using the parser
 #### Load up the parser of your choice.
 
 ```php
