@@ -16,4 +16,4 @@ jobs:
           # (PAT) configured as a GitHub action secret
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           release-type: php
-          package-name: sbominator-cli
+
