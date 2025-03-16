@@ -17,7 +17,7 @@ class ComposerParser extends BaseParser
         }
 
         $allPackages = $json['packages'];
-        if (!empty($json['packages-dev'])) {
+        if ($this->noDevPackages !== false && !empty($json['packages-dev'])) {
             $allPackages = array_merge($allPackages, $json['packages-dev']);
         }
 

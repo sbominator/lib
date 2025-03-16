@@ -17,7 +17,19 @@ class NpmParser extends BaseParser
         if (empty($json) || !isset($json['packages'])) {
             throw new \Exception('Invalid package-lock file');
         }
-        $this->packages = $json['packages']; // keys are package paths (e.g., "", "node_modules/foo", etc.)
+        $packages = $json['packages']; // keys are package paths (e.g., "", "node_modules/foo", etc.)
+
+        // If the noDevPackages flag is set, remove dev packages (except the root package).
+        if ($this->noDevPackages !== false) {
+            foreach ($packages as $key => $package) {
+                // Skip the root package (key == "").
+                if ($key !== "" && isset($package['dev']) && $package['dev'] === true) {
+                    unset($packages[$key]);
+                }
+            }
+        }
+
+        $this->packages = $packages;
     }
 
     protected function findPackageByIdentifier(string $identifier): ?array

@@ -19,6 +19,8 @@ abstract class BaseParser
      */
     protected array $globalBuilt = [];
 
+    protected bool $noDevPackages = false;
+
     /**
      * Loads JSON from file and parses it.
      */
@@ -122,5 +124,10 @@ abstract class BaseParser
             }
         }
         return $dependencies;
+    }
+
+    public function withoutDevPackages(): self {
+        $this->noDevPackages = true;
+        return $this;
     }
 }

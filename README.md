@@ -55,6 +55,9 @@ $parser->loadFromString(file_get_contents('composer.lock'));
 
 ```php
 $dependencyTree = $parser->parseDependencies();
+
+// You can omit dev packages if you want by calling withoutDevPackages() on the parser.
+$dependencyTree = $parser->withoutDevPackages()->parseDependencies();
 ```
 
 ## Contributing

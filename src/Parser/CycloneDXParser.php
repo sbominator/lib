@@ -96,4 +96,5 @@ class CycloneDXParser extends BaseParser
         }
         return $top;
     }
+
 }
