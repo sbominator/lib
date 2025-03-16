@@ -1,12 +1,11 @@
 <?php
 
-namespace SBOMinator\Enum;
+namespace SBOMinator\Lib\Enum;
 
-use SBOMinator\Parser\BaseParser;
-use SBOMinator\Parser\ComposerParser;
-use SBOMinator\Parser\CycloneDXParser;
-use SBOMinator\Parser\NpmParser;
-use SBOMinator\Parser\SpdxParser;
+use SBOMinator\Lib\Parser\ComposerParser;
+use SBOMinator\Lib\Parser\CycloneDXParser;
+use SBOMinator\Lib\Parser\NpmParser;
+use SBOMinator\Lib\Parser\SpdxParser;
 
 enum FileType: string {
     case COMPOSER_LOCK_FILE = 'COMPOSER_LOCK_FILE';

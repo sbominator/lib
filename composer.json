@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "SBOMinator\\": "src/"
+      "SBOMinator\\Lib\\": "src/"
     }
   },
   "require": {

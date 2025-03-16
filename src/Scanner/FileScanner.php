@@ -1,13 +1,13 @@
 <?php
-namespace SBOMinator\Scanner;
+namespace SBOMinator\Lib\Scanner;
 
-use SBOMinator\Dependency;
-use SBOMinator\Detector\FileType\ComposerLockFileTypeDetector;
-use SBOMinator\Detector\FileType\CycloneDXSBOMFileTypeDetector;
-use SBOMinator\Detector\FileType\FileTypeDetectorInterface;
-use SBOMinator\Detector\FileType\PackageLockFileTypeDetector;
-use SBOMinator\Detector\FileType\SPDXBOMFileTypeDetector;
-use SBOMinator\Enum\FileType;
+use SBOMinator\Lib\Dependency;
+use SBOMinator\Lib\Detector\FileType\ComposerLockFileTypeDetector;
+use SBOMinator\Lib\Detector\FileType\CycloneDXSBOMFileTypeDetector;
+use SBOMinator\Lib\Detector\FileType\FileTypeDetectorInterface;
+use SBOMinator\Lib\Detector\FileType\PackageLockFileTypeDetector;
+use SBOMinator\Lib\Detector\FileType\SPDXBOMFileTypeDetector;
+use SBOMinator\Lib\Enum\FileType;
 
 /**
  * Main directory scanner class.
