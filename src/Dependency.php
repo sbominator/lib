@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SBOMinator;
+namespace SBOMinator\Lib;
 
 class Dependency
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SBOMinator\Parser;
+namespace SBOMinator\Lib\Parser;
 
 class ComposerParser extends BaseParser
 {
