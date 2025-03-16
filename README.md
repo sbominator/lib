@@ -28,7 +28,28 @@ For easier development across machines, you can use ddev to run the project loca
 After checking out the project, you can run `ddev start` to start the project. Use `ddev ssh` to get a shell in the running container. You can then run `composer install` in the shell to install the dependencies.
 
 ### Usage
+##### Using the scanner
+#### Load up the scanner of your choice.
 
+```php
+use SBOMinator\Scanner\FileScanner;
+
+/*
+ * You can pass the maximum depth of the subdirectories to scan (default is 10)
+ * and an array of file extensions to scan for. (If you want to work with all available parsers, you can use the default ['json', 'lock'])
+ */ 
+
+$fileScanner = new FileScanner(10, ['json', 'lock']);
+```
+
+#### Scan a directory
+Use the scanForDependencies() method to scan a directory for files that the scanner supports.
+
+```php
+$dependencies = $fileScanner->scanForDependencies(getcwd());
+```
+
+##### Using the parser
 #### Load up the parser of your choice.
 
 ```php

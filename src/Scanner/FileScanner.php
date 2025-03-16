@@ -50,13 +50,13 @@ class FileScanner {
     }
 
     /**
-     * Scan the directory and its subdirectories for matching files.
+     * Scan the directory and its subdirectories for dependencies and combine them.
      *
      * @param string $path The directory path to scan.
      *
      * @return array An array of results, each with 'file' and 'type' keys.
      */
-    public function scan(string $path): array {
+    public function scanForDependencies(string $path): array {
         $results = [];
         $this->recursiveScan($path, 0, $results);
 
