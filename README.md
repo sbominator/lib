@@ -37,7 +37,7 @@ use SBOMinator\Parser\ComposerParser;
 $parser = new ComposerParser();
 
 // You can omit dev packages if you want by calling withoutDevPackages() on the parser.
-$parser = new ComposerParser()->withoutDevPackages();
+$parser = (new ComposerParser())->withoutDevPackages();
 ```
 
 #### Parse a file that the parser supports
