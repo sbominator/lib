@@ -20,7 +20,7 @@ class NpmParser extends BaseParser
         $packages = $json['packages']; // keys are package paths (e.g., "", "node_modules/foo", etc.)
 
         // If the noDevPackages flag is set, remove dev packages (except the root package).
-        if ($this->noDevPackages !== false) {
+        if ($this->noDevPackages !== true) {
             foreach ($packages as $key => $package) {
                 // Skip the root package (key == "").
                 if ($key !== "" && isset($package['dev']) && $package['dev'] === true) {
