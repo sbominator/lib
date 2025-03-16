@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Update Packagist
         run: |
-          curl -X POST -d "package=vendor/package" \
+          curl -X POST -d "package=sbominator/cli" \
             "https://packagist.org/api/update-package?username=${{ secrets.PACKAGIST_USERNAME }}&apiToken=${{ secrets.PACKAGIST_TOKEN }}"
