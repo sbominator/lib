@@ -20,7 +20,7 @@ Dependencies are represented as a tree structure, with each node containing the 
 
 ### Installation
 
-Run `composer require sbominator/sbominator` to install the library.
+Run `composer require sbominator/sbom-lib` to install the library.
 
 ### With ddev
 
