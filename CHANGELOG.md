@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/sbominator/lib/compare/v0.2.2...v0.3.0) (2025-03-16)
+
+
+### Features
+
+* add FileScanner for scanning directories and combining the dependencies ([ed82754](https://github.com/sbominator/lib/commit/ed82754878c3e3db62d520156c99e153510bf80b))
+
 ## [0.2.2](https://github.com/sbominator/lib/compare/v0.2.1...v0.2.2) (2025-03-16)
 
 
