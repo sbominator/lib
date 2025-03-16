@@ -1,6 +1,5 @@
 {
   "name": "sbominator/sbom-lib",
-  "version": "0.1.0",
   "description": "SBOMinator Library",
   "license": "MIT",
   "homepage": "https://github.com/sbominator/package",
