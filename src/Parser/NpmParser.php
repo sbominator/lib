@@ -20,7 +20,7 @@ class NpmParser extends BaseParser
         $packages = $json['packages']; // keys are package paths (e.g., "", "node_modules/foo", etc.)
 
         // If the noDevPackages flag is set, remove dev packages (except the root package).
-        if ($this->noDevPackages !== true) {
+        if ($this->noDevPackages === true) {
             foreach ($packages as $key => $package) {
                 // Skip the root package (key == "").
                 if ($key !== "" && isset($package['dev']) && $package['dev'] === true) {
@@ -63,16 +63,6 @@ class NpmParser extends BaseParser
 
     protected function getTopLevelIdentifiers(): array
     {
-        // The root package is at key "".
-        // Its direct dependencies (if any) are listed in its "dependencies" property.
-        if (isset($this->packages[""]) && isset($this->packages[""]["dependencies"]) && is_array($this->packages[""]["dependencies"])) {
-            $top = [];
-            foreach (array_keys($this->packages[""]["dependencies"]) as $depName) {
-                $top[] = $this->resolveDependencyIdentifier("", $depName);
-            }
-            return $top;
-        }
-        // Fallback: return all package keys except the root.
         $top = [];
         foreach (array_keys($this->packages) as $key) {
             if ($key !== "") {
