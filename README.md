@@ -51,7 +51,7 @@ You can also pass the contents of a file as string to the parser:
 $parser->loadFromString(file_get_contents('composer.lock'));
 ```
 
-##### Retrive the Dependency Tree
+##### Retrieve the Dependency Tree
 
 ```php
 $dependencyTree = $parser->parseDependencies();
