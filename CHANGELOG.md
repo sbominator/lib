@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1](https://github.com/sbominator/lib/compare/v0.2.0...v0.2.1) (2025-03-16)
+
+
+### Bug Fixes
+
+* **NpmParser:** remove top level dependency filter ([ea309a1](https://github.com/sbominator/lib/commit/ea309a1e728ee7195f5b7996a881b801e2c305ea))
+
+
+### Miscellaneous Chores
+
+* remove unused release stuff ([43f5b0d](https://github.com/sbominator/lib/commit/43f5b0dc3ed2e777c9e6ae163e735dd5dd4324d7))
+* set minimum PHP requirement to v8.2 ([622a87c](https://github.com/sbominator/lib/commit/622a87cf67aaac3bb866d1c03e6834e3e87c57da))
+
 ## [0.2.0](https://github.com/sbominator/lib/compare/v0.1.0...v0.2.0) (2025-03-16)
 
 
