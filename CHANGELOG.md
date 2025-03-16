@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.2.0](https://github.com/sbominator/lib/compare/v0.1.0...v0.2.0) (2025-03-16)
+
+
+### Features
+
+* release initial version ([58e8a16](https://github.com/sbominator/lib/commit/58e8a168d9deae1fa32ce0bac8fa91ae276ba155))
+
+
+### Bug Fixes
+
+* logic error ([6374c2f](https://github.com/sbominator/lib/commit/6374c2fd80968701b2ade540bcb3d5dac6acada9))
+* README had withoutDevPackages() option in the wrong spot ([33032b9](https://github.com/sbominator/lib/commit/33032b933c191cece7af2e7da94194703f2939e9))
+* README typo ([167523c](https://github.com/sbominator/lib/commit/167523c671feec8c2e2ad8435b145895441d4040))
+
+
+### Miscellaneous Chores
+
+* change name to lib ([36697ae](https://github.com/sbominator/lib/commit/36697aefad07ac417a3e4a1563f1a09810be1a1f))
+* change name to sbom-lib ([7b4bd1d](https://github.com/sbominator/lib/commit/7b4bd1d0e7e37f42e6160ed34db9a832e1b06151))
+* no chores in changelog ([0df884f](https://github.com/sbominator/lib/commit/0df884f0bc7df636c2f0993b04ee3a84f81dc5f3))
+* update package name ([83a62f5](https://github.com/sbominator/lib/commit/83a62f5a1a0179234ad9f6797d385f416c1e064a))
+
 ## [0.1.0](https://github.com/sbominator/package/compare/v0.1.0...v0.1.0) (2025-03-16)
 
 
