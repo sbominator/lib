@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SBOMinator\Parser;
+namespace SBOMinator\Lib\Parser;
 
 use SBOMinator\Dependency;
 use SBOMinator\Enum\FileType;
