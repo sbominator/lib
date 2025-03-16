@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/sbominator/lib/compare/v0.3.0...v0.3.1) (2025-03-16)
+
+
+### Miscellaneous Chores
+
+* only SemVer relevant sections in changelog ([fdba2ed](https://github.com/sbominator/lib/commit/fdba2ed3b4bfe4aea52e38c42176f839f705da29))
+* only SemVer relevant sections in changelog ([e5b45c9](https://github.com/sbominator/lib/commit/e5b45c9722f9fc6c5d167412c12de7840afc7cd1))
+
 ## [0.3.0](https://github.com/sbominator/lib/compare/v0.2.2...v0.3.0) (2025-03-16)
 
 
