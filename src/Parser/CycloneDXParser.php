@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace SBOMinator\Parser;
 
 use SBOMinator\Dependency;
+use SBOMinator\Enum\FileType;
 
 class CycloneDXParser extends BaseParser
 {
+    protected FileType $originFileType = FileType::CYCLONEDX_SBOM_FILE;
     /**
      * Dependency graph mapping component identifier ("bom-ref") to an array of dependency identifiers.
      *

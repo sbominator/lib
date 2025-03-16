@@ -9,10 +9,12 @@ class Dependency
     private string $name;
     private string $version;
     private array $dependencies;
+    private ?string $origin;
 
-    public function __construct(string $name, string $version, array $dependencies = [])
+    public function __construct(string $name, string $version, string $origin, array $dependencies = [])
     {
         $this->name = $name;
+        $this->origin = $origin;
         $this->version = $version;
         $this->dependencies = $dependencies;
     }
@@ -30,5 +32,10 @@ class Dependency
     public function getDependencies(): array
     {
         return $this->dependencies;
+    }
+
+    public function getOrigin(): string
+    {
+        return $this->origin;
     }
 }

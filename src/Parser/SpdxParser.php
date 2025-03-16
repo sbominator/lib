@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace SBOMinator\Parser;
 
 use SBOMinator\Dependency;
+use SBOMinator\Enum\FileType;
 
 class SpdxParser extends BaseParser
 {
+    protected FileType $originFileType = FileType::SPDX_SBOM_FILE;
     /**
      * Dependency graph mapping a package's SPDXID to an array of dependency SPDXIDs.
      *
@@ -126,7 +128,7 @@ class SpdxParser extends BaseParser
             $pkg = $this->findPackageByIdentifier($identifier);
             $displayName = $pkg['name'] ?? $identifier;
             // Return a new Dependency using the actual package name.
-            return new Dependency($displayName, $dep->getVersion(), $dep->getDependencies());
+            return new Dependency($displayName, $dep->getVersion(), $dep->getOrigin(), $dep->getDependencies());
         }
         return null;
     }

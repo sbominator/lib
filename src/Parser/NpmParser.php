@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace SBOMinator\Parser;
 
 use SBOMinator\Dependency;
+use SBOMinator\Enum\FileType;
 
 class NpmParser extends BaseParser
 {
+    protected FileType $originFileType = FileType::NODE_PACKAGE_LOCK_FILE;
     /**
      * Expects a package-lock.json file with a "packages" key.
      * The "packages" value is an associative array where the root package is keyed by "".
@@ -87,7 +89,7 @@ class NpmParser extends BaseParser
         if ($dep !== null) {
             // Remove any leading "node_modules/" prefix from the Dependency name.
             $cleanName = preg_replace('#^(node_modules/)+#', '', $dep->getName());
-            return new Dependency($cleanName, $dep->getVersion(), $dep->getDependencies());
+            return new Dependency($cleanName, $dep->getVersion(), $dep->getOrigin(), $dep->getDependencies());
         }
         return null;
     }

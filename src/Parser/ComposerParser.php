@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace SBOMinator\Parser;
 
+use SBOMinator\Enum\FileType;
+
 class ComposerParser extends BaseParser
 {
+
+    protected FileType $originFileType = FileType::COMPOSER_LOCK_FILE;
+
     /**
      * Expects a composer.lock JSON structure with keys "content-hash", "packages" and optionally "packages-dev".
      * Converts the packages into an associative array keyed by package name.

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SBOMinator\Parser;
 
 use SBOMinator\Dependency;
+use SBOMinator\Enum\FileType;
 
 abstract class BaseParser
 {
@@ -20,6 +21,8 @@ abstract class BaseParser
     protected array $globalBuilt = [];
 
     protected bool $noDevPackages = false;
+
+    protected FileType $originFileType;
 
     /**
      * Loads JSON from file and parses it.
@@ -103,7 +106,7 @@ abstract class BaseParser
                 $subDeps[] = $subTree;
             }
         }
-        $dependency = new Dependency($identifier, $this->getVersion($package), $subDeps);
+        $dependency = new Dependency($identifier, $this->getVersion($package), $this->originFileType->value, $subDeps);
         $this->globalBuilt[$identifier] = $dependency;
         return $dependency;
     }
