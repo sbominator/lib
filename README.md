@@ -17,6 +17,14 @@ Dependencies are represented as a tree structure, with each node containing the 
 ### Installation
 Run `composer require sbominator/sbominator` to install the library.
 
+### With ddev
+For easier development across machines, you can use ddev to run the project locally. You can install ddev by following the instructions at https://ddev.readthedocs.io/en/stable/#installation.
+After checking out the project, you can run `ddev start` to start the project. Use `ddev ssh` to get a shell in the running container. You can then run `composer install` in the shell to install the dependencies.
+
+## Contributing
+
+please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
+
 ### Usage
 #### Load up the parser of your choice.
 
