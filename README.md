@@ -1,14 +1,21 @@
-# SBOMinator
+# SBOMinator Library
 
-This is the SBOMinator project started during the "Securing the Supply Chain of OSS" project at Cloudfest Hackathon 2025.
+## What it is
+This library can be used as a multi-channel dependency tracker.
+It can parse the following files:
+- Composer Lockfiles
+- NPM Lockfiles
+- CycloneDX SBOMs
+- SPDX SBOMs
 
-## Development
-Note: There is a lot of stuff here to help aid in development of the library.
-This will be removed and/or extraced out into their own packages (e.g. `sbominator-cli`) before it will be merged into the `main` branch.
+## How it works
+The library uses a parser interface to parse the files.
+You can then use the parser to get the dependency tree of the file.
+Dependencies are represented as a tree structure, with each node containing the name of the dependency and its version.
 
-### Without ddev
-Make sure you have PHP 8.4 and Composer installed. You can install Composer by following the instructions at https://getcomposer.org/download/.
-After checking out the project, you can run `composer install` to install the dependencies.
+## How to use it
+### Installation
+Run `composer require sbominator/sbominator` to install the library.
 
 ### With ddev
 For easier development across machines, you can use ddev to run the project locally. You can install ddev by following the instructions at https://ddev.readthedocs.io/en/stable/#installation.
@@ -16,35 +23,31 @@ After checking out the project, you can run `ddev start` to start the project. U
 
 ## Contributing
 
-## Committing
+please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
 
-Our commit messages use a simplified form of [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). This is how our automated release system knows what a given commit means.
+### Usage
+#### Load up the parser of your choice.
 
-```md
-<type>: <description>
+```php
+use SBOMinator\Parser\ComposerParser;
 
-[body]
+$parser = new ComposerParser();
 ```
 
-### Commit type prefixes
+#### Parse a file that the parser supports.
 
-The `type` can be any of `feat`, `fix` or `chore`.
+You can pass a file path to the parser:
+```php
+$parser->loadFromFile('composer.lock');
+```
 
-The prefix is used to calculate the semver release level, and the section of the release notes to place the commit message in.
+You can also pass the contents of a file as string to the parser:
+```php
+$parser->loadFromString(file_get_contents('composer.lock'));
+```
 
-| **type**   | When to Use                          | Release Level | Release Note Section  |
-| ---------- | ----------------------------------- | ------------- | --------------------   |
-| feat       | A feature has been added            | `minor`       | **Added**           |
-| fix        | A bug has been patched              | `patch`       | **Fixed**          |
-| deps        | Changes to the dependencies          | `patch`       | **Changed**          |
-| perf       | Performance improvements            | none          | **Performance Improvements**   |
-| chore      | Any changes that aren't user-facing | none          | none                   |
-| docs       | Documentation updates               | none          | none                   |
-| style      | Code style and formatting changes   | none          | none                   |
-| refactor   | Code refactoring                    | none          | none                   |                |
-| test       | Adding tests or test-related changes| none          | none                   |
-| build      | Build system or tooling changes     | none          | none                   |
-| ci         | Continuous Integration/Deployment    | none          | none                   |
-| revert     | Reverting a previous commit          | none          | none                   |
-| wip        | Work in progress (temporary)        | none          | none                   |
+##### Retrive the Dependency Tree
 
+```php
+$dependencyTree = $parser->parseDependencies();
+```
