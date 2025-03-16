@@ -17,3 +17,4 @@ jobs:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           release-type: php
           package-name: sbominator-cli
+          target-branch: patrice/release-please
