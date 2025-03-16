@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/sbominator/lib/compare/v0.2.1...v0.2.2) (2025-03-16)
+
+
+### Bug Fixes
+
+* add licensing info ([a0acd72](https://github.com/sbominator/lib/commit/a0acd726ad9e673c0ecf45d47aa6b160133d8385))
+
 ## [0.2.1](https://github.com/sbominator/lib/compare/v0.2.0...v0.2.1) (2025-03-16)
 
 
