@@ -21,7 +21,7 @@ Run `composer require sbominator/sbominator` to install the library.
 #### Load up the parser of your choice.
 
 ```php
-use SBOM\Parser\ComposerParser;
+use SBOMinator\Parser\ComposerParser;
 
 $parser = new ComposerParser();
 ```
