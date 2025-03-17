@@ -28,6 +28,17 @@ For easier development across machines, you can use ddev to run the project loca
 After checking out the project, you can run `ddev start` to start the project. Use `ddev ssh` to get a shell in the running container. You can then run `composer install` in the shell to install the dependencies.
 
 ### Usage
+
+### Using the generator
+#### Load up the generator of your choice and generate from a dependency tree.
+
+```php
+
+$generator = new SpdxSBOMGenerator($dependencies);
+$SBOMstring = $generator->generate();
+
+```
+
 ### Using the scanner
 #### Load up the scanner of your choice.
 
