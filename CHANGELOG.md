@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.4.0](https://github.com/sbominator/lib/compare/v0.3.0...v0.4.0) (2025-03-17)
+
+
+### Features
+
+* add dependency graph generator ([77898f3](https://github.com/sbominator/lib/commit/77898f3475af044eb7eef34ba35da8e964a5a58d))
+* add rudimentary generator of sboms from dependency tree ([f660f4b](https://github.com/sbominator/lib/commit/f660f4b7d7d5e76324f03f4064cc48b4ba204e73))
+* **FileScanner:** add deduplication of dependencies ([c657c2e](https://github.com/sbominator/lib/commit/c657c2ef123736709d7d342f76dab9011eeb9c58))
+
+
+### Bug Fixes
+
+* use less ambigous namespace ([#12](https://github.com/sbominator/lib/issues/12)) ([2cc87dd](https://github.com/sbominator/lib/commit/2cc87dd44adf752fe3c6cbff8cb303501be4b2d8))
+* use proper SBOMinator\Lib PSR-4 namespace ([#15](https://github.com/sbominator/lib/issues/15)) ([11604c4](https://github.com/sbominator/lib/commit/11604c4ad2d23407ddb3adeccd5d8024683a41ab))
+
+
+### Miscellaneous Chores
+
+* only SemVer relevant sections in changelog ([fdba2ed](https://github.com/sbominator/lib/commit/fdba2ed3b4bfe4aea52e38c42176f839f705da29))
+* only SemVer relevant sections in changelog ([e5b45c9](https://github.com/sbominator/lib/commit/e5b45c9722f9fc6c5d167412c12de7840afc7cd1))
+
 ## [0.3.0](https://github.com/sbominator/lib/compare/v0.2.2...v0.3.0) (2025-03-16)
 
 
