@@ -45,7 +45,7 @@ class CycloneDXSBOMGenerator
         $dependencyMap = [];
         $visited = [];
 
-        // Helper: recursively traverse a dependency tree.
+        // Helper: recursively traverse the dependency tree.
         $traverse = function (Dependency $dep) use (&$traverse, &$components, &$dependencyMap, &$visited) {
             // Create a unique reference for the component (using name and version).
             $key = $this->getComponentRef($dep);
@@ -55,8 +55,8 @@ class CycloneDXSBOMGenerator
                 $visited[$key] = true;
                 $components[$key] = [
                     "bom-ref" => $key,
-                    "type" => "library", // most dependencies are libraries
-                    "name" => $dep->getName(),
+                    "type"    => "library", // most dependencies are libraries
+                    "name"    => $dep->getName(),
                     "version" => $dep->getVersion(),
                 ];
             }
@@ -70,14 +70,18 @@ class CycloneDXSBOMGenerator
                 $traverse($child);
             }
 
-            // If this dependency has children, add a dependency mapping.
+            // If this dependency has children, add or merge a dependency mapping.
             if (!empty($childRefs)) {
                 if (isset($dependencyMap[$key])) {
-                    // Merge with existing child dependencies and remove duplicates.
-                    $dependencyMap[$key] = array_unique(array_merge($dependencyMap[$key], $childRefs));
+                    // Merge with existing child dependencies.
+                    $merged = array_merge($dependencyMap[$key], $childRefs);
                 } else {
-                    $dependencyMap[$key] = $childRefs;
+                    $merged = $childRefs;
                 }
+                // Normalize each reference (trim extra whitespace), remove duplicates, and re-index.
+                $merged = array_map('trim', $merged);
+                $merged = array_unique($merged);
+                $dependencyMap[$key] = array_values($merged);
             }
         };
 
@@ -86,21 +90,22 @@ class CycloneDXSBOMGenerator
             $traverse($dep);
         }
 
-        // Convert the dependency map to the format expected by CycloneDX.
+        // Build the dependencies array in the format expected by CycloneDX.
         $dependencies = [];
         foreach ($dependencyMap as $ref => $dependsOn) {
+            // Make sure the dependsOn list is re-indexed.
             $dependencies[] = [
-                "ref" => $ref,
-                "dependsOn" => $dependsOn,
+                "ref"       => $ref,
+                "dependsOn" => array_values($dependsOn),
             ];
         }
 
         // Assemble the final SBOM array.
         $sbom = [
-            "bomFormat" => "CycloneDX",
-            "specVersion" => "1.4",
-            "version" => 1,
-            "components" => array_values($components), // reindex for JSON array
+            "bomFormat"    => "CycloneDX",
+            "specVersion"  => "1.4",
+            "version"      => 1,
+            "components"   => array_values($components), // re-index for JSON array
             "dependencies" => $dependencies,
         ];
 
