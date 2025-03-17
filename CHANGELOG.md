@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/sbominator/lib/compare/v0.5.0...v0.5.1) (2025-03-17)
+
+
+### Miscellaneous Chores
+
+* Correct a the namespace in the documentation. ([660789a](https://github.com/sbominator/lib/commit/660789a4ac2051444699aafb6b793abcd78f174c))
+
 ## [0.5.0](https://github.com/sbominator/lib/compare/v0.4.1...v0.5.0) (2025-03-17)
 
 
