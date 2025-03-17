@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/sbominator/lib/compare/v0.4.0...v0.4.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* the CycloneDX SBOM Generator should now output valid BOMs ([da6a358](https://github.com/sbominator/lib/commit/da6a358497f259572cc00eeaaead581514f9933a))
+* wrong namespace for DependencyGraph ([7e0770c](https://github.com/sbominator/lib/commit/7e0770cec065b29d262d55e0473520d51cec3fdb))
+
 ## [0.4.0](https://github.com/sbominator/lib/compare/v0.3.0...v0.4.0) (2025-03-17)
 
 
