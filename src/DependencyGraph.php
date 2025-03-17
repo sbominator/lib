@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SBOMinator;
+namespace SBOMinator\Lib;
+
+use SBOMinator\Lib\Dependency;
 
 class DependencyGraph
 {
