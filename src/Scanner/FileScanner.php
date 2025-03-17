@@ -68,7 +68,10 @@ class FileScanner {
             $result['dependencies'] = $parser->parseDependencies();
         }
 
-        return self::combineDependencies($results);
+        $combinedDependencies = self::combineDependencies($results);
+        $deduplicatedDependencies = self::deduplicateDependencies($combinedDependencies);
+
+        return $deduplicatedDependencies;
     }
 
     /**
@@ -137,6 +140,54 @@ class FileScanner {
         }
 
         return null;
+    }
+
+    /**
+     * Deduplicates an array of Dependency objects.
+     * ToDo: There needs to be a more efficient way to do this.
+     *
+     * @param Dependency[] $dependencies The array of Dependency objects.
+     *
+     * @return Dependency[] The deduplicated array of Dependency objects.
+     */
+    public static function deduplicateDependencies(array $dependencies): array
+    {
+        $uniqueDeps = [];
+
+        foreach ($dependencies as $dep) {
+            // Create a unique key using the dependency's name and version
+            $key = $dep->getName() . '|' . $dep->getVersion();
+
+            if (!isset($uniqueDeps[$key])) {
+                // First occurrence, so add it to our unique dependencies array
+                $uniqueDeps[$key] = $dep;
+            } else {
+                // Duplicate found - merge the dependencies
+                $existingDep = $uniqueDeps[$key];
+
+                // Retrieve the dependencies from both objects
+                $existingDependencies = $existingDep->getDependencies();
+                $newDependencies = $dep->getDependencies();
+
+                // Merge and remove any duplicate dependency entries
+                $mergedDependencies = array_unique(array_merge($existingDependencies, $newDependencies));
+
+                // Create a new Dependency instance with the merged dependencies.
+                // (You could also modify the existing object if you have a setter, but here we create a new instance.)
+                $mergedDep = new Dependency(
+                    $dep->getName(),
+                    $dep->getVersion(),
+                    $dep->getOrigin(),
+                    $mergedDependencies
+                );
+
+                // Replace the duplicate with the merged Dependency object
+                $uniqueDeps[$key] = $mergedDep;
+            }
+        }
+
+        // Reindex the array to obtain a sequential numeric array of Dependency objects
+        return array_values($uniqueDeps);
     }
 
     public static function combineDependencies(array $results): array
