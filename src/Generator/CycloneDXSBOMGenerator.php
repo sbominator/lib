@@ -34,8 +34,9 @@ class CycloneDXSBOMGenerator
      * - "bomFormat": set to "CycloneDX"
      * - "specVersion": the CycloneDX specification version (here "1.4")
      * - "version": a BOM version (here 1)
-     * - "components": an array of all components (libraries) in the tree
-     * - "dependencies": an array mapping each component’s "bom‑ref" to its direct dependencies
+     * - "components": an array of all components (libraries) in the tree.
+     *     Each component now includes a "purl" field for dependency tracking.
+     * - "dependencies": an array mapping each component’s "bom‑ref" to its direct dependencies.
      *
      * @return string The generated SBOM as a JSON string.
      */
@@ -58,6 +59,8 @@ class CycloneDXSBOMGenerator
                     "type"    => "library", // most dependencies are libraries
                     "name"    => $dep->getName(),
                     "version" => $dep->getVersion(),
+                    // Generate a Package URL based on the dependency's origin, name, and version.
+                    "purl"    => $this->generatePurl($dep),
                 ];
             }
 
@@ -78,14 +81,14 @@ class CycloneDXSBOMGenerator
                 } else {
                     $merged = $childRefs;
                 }
-                // Normalize each reference (trim extra whitespace), remove duplicates, and re-index.
+                // Normalize, remove duplicates, and re-index.
                 $merged = array_map('trim', $merged);
                 $merged = array_unique($merged);
                 $dependencyMap[$key] = array_values($merged);
             }
         };
 
-        // Traverse each top-level dependency in the tree.
+        // Traverse each top-level dependency.
         foreach ($this->dependencyTree as $dep) {
             $traverse($dep);
         }
@@ -93,7 +96,6 @@ class CycloneDXSBOMGenerator
         // Build the dependencies array in the format expected by CycloneDX.
         $dependencies = [];
         foreach ($dependencyMap as $ref => $dependsOn) {
-            // Make sure the dependsOn list is re-indexed.
             $dependencies[] = [
                 "ref"       => $ref,
                 "dependsOn" => array_values($dependsOn),
@@ -125,5 +127,36 @@ class CycloneDXSBOMGenerator
     private function getComponentRef(Dependency $dep): string
     {
         return $dep->getName() . '|' . $dep->getVersion();
+    }
+
+    /**
+     * Generates a Package URL (purl) for the given dependency.
+     *
+     * This simple implementation uses the dependency's origin to decide which purl scheme to use.
+     * For example, if the dependency originated from a Composer lock file, the purl will use the "composer" type.
+     *
+     * @param Dependency $dep The dependency object.
+     *
+     * @return string The generated purl.
+     */
+    private function generatePurl(Dependency $dep): string
+    {
+        // Determine the package type based on the dependency's origin.
+        // (Assuming the origin is set to one of the FileType enum values.)
+        $origin = strtoupper($dep->getOrigin());
+        switch ($origin) {
+            case 'COMPOSER_LOCK_FILE':
+                $type = 'composer';
+                break;
+            case 'NODE_PACKAGE_LOCK_FILE':
+                $type = 'npm';
+                break;
+            default:
+                $type = 'generic';
+                break;
+        }
+
+        // Build a basic purl string. (Note: You may wish to refine this to meet the full purl specification.)
+        return "pkg:$type/" . strtolower($dep->getName()) . "@" . $dep->getVersion();
     }
 }
