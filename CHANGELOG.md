@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/sbominator/lib/compare/v0.4.1...v0.5.0) (2025-03-17)
+
+
+### Features
+
+* **CycloneDXSBOMGenerator:** add purl to cyclonedx components if possible to make vuln analysis with dependencytrack possible ([cec46f9](https://github.com/sbominator/lib/commit/cec46f9960a79b1310bdbab6dcfa2d6cb849ac86))
+
 ## [0.4.1](https://github.com/sbominator/lib/compare/v0.4.0...v0.4.1) (2025-03-17)
 
 
