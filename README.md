@@ -43,7 +43,7 @@ $SBOMstring = $generator->generate();
 #### Load up the scanner of your choice.
 
 ```php
-use SBOMinator\Scanner\FileScanner;
+use SBOMinator\Lib\Scanner\FileScanner;
 
 /*
  * You can pass the maximum depth of the subdirectories to scan (default is 10)
